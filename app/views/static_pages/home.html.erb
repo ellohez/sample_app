@@ -1,7 +1,12 @@
+<%# (The distinction between the two types of embedded Ruby is that the following line
+executes the code inside, while <%= ... >% (with the = sign) %>
+<%# executes it and inserts the result into the template.) %>
+
+<% provide(:title, "Home") %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home | Ruby on Rails Tutorial Sample App</title>
+  <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
 </head>
 <body>
 <h1>Sample App</h1>
