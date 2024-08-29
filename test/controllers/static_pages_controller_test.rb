@@ -14,7 +14,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get root_url
 
     assert_response :success
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "should get home" do
@@ -22,7 +22,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     # The :success response is and abstract representation of the
     # HTTP status code - 200 OK
     assert_response :success
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "should get help" do
