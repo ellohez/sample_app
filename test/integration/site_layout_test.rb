@@ -19,5 +19,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     # This is a brittle test as any typo in base title won't be caught by the test suite
     # so ApplicationHelperTest tests the base title
     assert_select 'title', full_title('Contact')
+
+    get signup_path
+    assert_select 'title', full_title('Sign up')
   end
 end
