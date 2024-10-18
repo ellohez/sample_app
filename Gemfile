@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-gem "bcrypt",          "3.1.18"
+gem 'bcrypt',          '3.1.18'
 gem 'bootsnap',        '1.12.0', require: false
 gem 'bootstrap-sass',  '3.4.1'
 gem 'importmap-rails', '1.1.0'
@@ -25,10 +25,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '4.2.0'
-  gem 'rubocop-rails'
-  gem 'rubocop-minitest'
   gem 'rubocop-capybara'
+  gem 'rubocop-minitest'
+  gem 'rubocop-rails'
+  gem 'web-console', '4.2.0'
 end
 
 group :test do

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Module description goes here
 module ApplicationHelper
   # Returns the full title on a per-page basis.       # Documentation comment
   # Method def, optional arg
