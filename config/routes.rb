@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'users/new'
   root 'static_pages#home'
-
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
-  # route signup to users_controller.new
+  # Route signup to users_controller.new
   get '/signup', to: 'users#new'
+  # Session controller routes
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  # Uses the special 'resources' method to auto obtain a full suite of RESTful routes
   resources :users
 end

@@ -1,3 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# Empty - for now
+# All test users have password = 'password'
+kermit:
+  name: Kermit Frog
+  email: kermit@organisation.co.uk
+  password_digest: <%= User.digest('password') %>

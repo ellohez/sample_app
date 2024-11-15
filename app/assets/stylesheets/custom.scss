@@ -108,6 +108,23 @@ footer {
   }
 }
 
+@media (max-width: 800px) {
+  footer {
+    small {
+      display: block;
+      float: none;
+      margin-bottom: 1em;
+    }
+    ul {
+      float: none;
+      padding: 0;
+      li {
+        float: none;
+        margin-left: 0;
+      }
+    }
+  }
+}
 /* forms */
 input, textarea, select, .uneditable-input {
   border: 1px solid #BBBBBB;
@@ -178,4 +195,9 @@ aside {
   float: left;
   width: 100%;
   margin-top: 45px;
+}
+
+/* Dropdown menu */
+.dropdown-menu.active {
+  display: block;
 }
