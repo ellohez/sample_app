@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # Route signup to users_controller.new
   get '/signup', to: 'users#new'
   # Session controller routes
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   # Uses the special 'resources' method to auto obtain a full suite of RESTful routes
   resources :users
 end
