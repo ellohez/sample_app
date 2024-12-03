@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   # Remember - there is no related Active Record model for session (unlike for User)
   def new; end

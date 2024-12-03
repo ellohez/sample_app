@@ -17,7 +17,7 @@ class User < ApplicationRecord
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     # Creates a bcrypt (salted) hash
-    BCrypt::Password.create(string, cost: cost)
+    BCrypt::Password.create(string, cost:)
   end
 
   def self.new_token
@@ -49,4 +49,3 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
-end
