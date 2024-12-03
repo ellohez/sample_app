@@ -90,3 +90,20 @@ class RememberingTest < UsersLogin
     assert cookies[:remember_token].blank?
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
