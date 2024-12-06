@@ -5,3 +5,7 @@ kermit:
   name: Kermit Frog
   email: kermit@organisation.co.uk
   password_digest: <%= User.digest('password') %>
+gonzo:
+  name: Gonzo
+  email: bignose@muppets.org
+  password_digest: <%= User.digest('password') %>
