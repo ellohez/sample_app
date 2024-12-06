@@ -12,7 +12,9 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  # Nil password only allowed for user edit actions, has_secure_password includes a separate presence validation
+  # that specifically catches nil passwords
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -49,3 +51,4 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+end
