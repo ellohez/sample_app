@@ -5,6 +5,7 @@ kermit:
   name: Kermit Frog
   email: kermit@organisation.co.uk
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 gonzo:
   name: Gonzo

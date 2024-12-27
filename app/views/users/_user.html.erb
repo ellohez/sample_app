@@ -1,4 +1,11 @@
 <li>
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
+  <!-- Only show delete link if current user is admin and not deleting themselves -->
+  <!-- turbo-method: Rails Turbo Drive will send a DELETE request to the server (browsers can't send DELETE requests natively) -->
+  <!-- turbo_confirm: A confirmation dialog will be shown before the request is sent -->
+  <% if current_user.admin? && !current_user?(user) %>
+  | <%= link_to "delete", user, data: { "turbo-method": :delete,
+                                        turbo_confirm: "Are you sure?"} %>
+  <% end %>
 </li>
