@@ -8,11 +8,12 @@ class UsersController < ApplicationController
 
   def index
     #  Here the page parameter comes from params[:page], which is generated automatically by will_paginate
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url unless @user.activated
   end
 
   def new
@@ -22,11 +23,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Not final implementation!
     if @user.save
-      reset_session
-      log_in @user
-      flash[:success] = "Welcome to the Sample App #{@user.name}!"
-      # Rails auto infers that we want to redirect_to user_url(@user)
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = 'Please check your email to activate your account.'
+      redirect_to root_url
     else
       render 'new', status: :unprocessable_entity
     end
