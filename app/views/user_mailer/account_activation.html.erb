@@ -1,0 +1,13 @@
+<!-- Mailers are structured like controller actions, with email templates defined as views -->
+<!-- The mailer class is UserMailer, and the action is account_activation -->
+<!-- Add to account activation branch -->
+
+<h1>Sample App</h1>
+<p>Hi <%= @user.name %>,</p>
+
+<p>
+  Welcome to the Sample App! Click on the link below to activate your account:
+
+  <%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                      email: @user.email) %>
+</p>

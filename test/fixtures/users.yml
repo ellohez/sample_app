@@ -9,6 +9,13 @@ kermit:
   activated: true
   activated_at: <%= Time.zone.now %>
 
+inactive:
+  name: Inactive User
+  email:
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: false
+
 gonzo:
   name: Gonzo
   email: bignose@muppets.org
