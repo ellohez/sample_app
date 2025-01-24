@@ -20,9 +20,12 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
 
     # Returns true if a test user is logged in.
+    # Disabling the rubocop rule for this method because there is a similarly named method in the SessionsHelper class
+    # rubocop:disable Naming/PredicateName
     def is_logged_in?
       !session[:user_id].nil?
     end
+    # rubocop:enable Naming/PredicateName
 
     #  Inside controller tests, we can manipulate the session method directly,
     # assigning user.id to the :user_id key

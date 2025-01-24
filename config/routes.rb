@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   # Uses the special 'resources' method to auto obtain a full suite of RESTful routes
   resources :users
+  # Using the resources method to create a RESTful 'edit' route for account activations
+  resources :account_activations, only: [:edit]
 end

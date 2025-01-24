@@ -10,16 +10,23 @@ class SessionsController < ApplicationController
     # Safer version of if user && user.authenticate...
     # This Ruby feature allows us to condense the common pattern of obj && obj.method into obj&.method
     if @user&.authenticate(params[:session][:password])
-      # Pull out the URL here before calling reset_session which will delete it
-      forwarding_url = session[:forwarding_url]
-      # resetting helps prevent a session 'fixation' attack
-      # also removes the forwarding URL so that subsequent login attempts do not get redirected
-      reset_session
-      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      # Log the user in and redirect to the user's show page
-      log_in @user
-      # Rails auto converts this to route - user_url(user)
-      redirect_to forwarding_url || @user
+      if @user.activated?
+        # Pull out the URL here before calling reset_session which will delete it
+        forwarding_url = session[:forwarding_url]
+        # resetting helps prevent a session 'fixation' attack
+        # also removes the forwarding URL so that subsequent 'login attempts' do not get redirected
+        reset_session
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        # Log the user in and redirect to the user's show page
+        log_in @user
+        # Rails auto converts this to route - user_url(user)
+        redirect_to forwarding_url || @user
+      else
+        message = 'Account not activated. '
+        message += 'Check your email for the activation link.'
+        flash[:warning] = message
+        redirect_to root_url
+      end
     else
       # Create an error message (.now makes it disappear as soon as there is an additional request)
       # - otherwise this would remain on screen even if the user navigates away
