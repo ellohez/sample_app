@@ -67,7 +67,6 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
-
   private
 
   # Converts email to all lower-case
