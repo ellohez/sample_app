@@ -2,6 +2,9 @@
 
 # Class description goes here
 class User < ApplicationRecord
+  # Describes the relationship between users and microposts AND ensures that when a user is destroyed,
+  # all associated microposts are destroyed as well
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
