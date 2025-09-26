@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   # Session controller routes
   get '/login', to: 'sessions#new'
+  # To cope with submission errors or copy/paste of the /microposts URL
+  # this will redirect
+  get '/microposts', to: 'static_pages#home'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   # Uses the special 'resources' method to auto obtain a full suite of RESTful routes
