@@ -38,3 +38,4 @@ db/test.
 /config/master.key
 /.idea
 *.iml
+/.ruby-version
