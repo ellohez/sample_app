@@ -121,17 +121,6 @@ class ExpiredTokenTest < ExpiredToken
 
   test "should include the word 'expired' in the flash message" do
     follow_redirect!
-    assert_match /expired/i, response.body
+    assert_match(/expired/i, response.body)
   end
 end
-
-
-
-
-
-
-
-
-
-
-

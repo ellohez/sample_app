@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class MicropostsInterface < ActionDispatch::IntegrationTest
   def setup
@@ -24,7 +26,7 @@ class MicropostsInterfaceTest < MicropostsInterface
   test 'should create a micropost on valid submission' do
     content = 'This micropost really ties the room together'
     assert_difference 'Micropost.count' do
-      post microposts_path, params: { micropost: { content: content } }
+      post microposts_path, params: { micropost: { content: } }
     end
     assert_redirected_to root_url
     follow_redirect!

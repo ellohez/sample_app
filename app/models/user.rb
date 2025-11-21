@@ -90,7 +90,7 @@ class User < ApplicationRecord
   # the '?' ensures that the (self.)id is properly escaped before being included in the
   # SQL query, to avoid SQL injection
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.where('user_id = ?', id)
   end
 
   private

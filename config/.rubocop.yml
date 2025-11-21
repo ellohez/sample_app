@@ -3,7 +3,12 @@ require:
   - rubocop-minitest
   - rubocop-rails
 
-Documentation:
-  Enabled: false
 AllCops:
   NewCops: enable
+  Excludes:
+    - db/**
+    - config/**
+    - script/**
+
+Style/Documentation:
+  Enabled: false
