@@ -1,0 +1,6 @@
+<%# should produce a form at the url /microposts ?? %>
+<%= form_with model: Micropost.new do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+  <%= form.submit "Post" %>
+<% end %>
