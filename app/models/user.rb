@@ -5,6 +5,19 @@ class User < ApplicationRecord
   # Describes the relationship between users and microposts AND ensures that when a user is destroyed,
   # all associated microposts are destroyed as well
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
+
+  #  This leads to a combination of ActiveRecord and array-like behaviour
+  has_many :following, through: :active_relationships, source: :followed
+  # Rails will automatically singularise 'followers' and look for FK of follower_id
+  # Whereas, we have to add the 'source' param to the previous line as the names following and followed differ
+  has_many :followers, through: :passive_relationships
+
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
@@ -91,6 +104,20 @@ class User < ApplicationRecord
   # SQL query, to avoid SQL injection
   def feed
     Micropost.where('user_id = ?', id)
+  end
+
+  def follow(other_user)
+    following << other_user unless self == other_user
+  end
+
+  def unfollow(other_user)
+    return unless following?(other_user)
+
+    following.delete(other_user)
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   private

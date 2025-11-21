@@ -84,4 +84,25 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test 'should be able to follow and unfollow a user' do
+    kermit = users(:kermit)
+    lana = users(:lana)
+
+    assert_not kermit.following?(lana)
+    kermit.follow(lana)
+    assert kermit.following?(lana)
+    assert_includes lana.followers, kermit
+    kermit.unfollow(lana)
+    assert_not kermit.following?(lana)
+
+    # Users can't follow themselves
+    kermit.follow(kermit)
+    assert_not kermit.following?(kermit)
+
+    # Unfollow works even if user is not following
+    assert_nothing_raised do
+      kermit.unfollow(lana)
+    end
+  end
 end
